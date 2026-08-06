@@ -8,9 +8,14 @@ class PerusahaanController extends Controller
 {
  public function index()
  {
- return 'Menampilkan daftar perusahaan mitra PKL dari controller';
+    $judulHalaman = 'Daftar Perusahaan Mitra PKL';
+
+ return view('perusahaan.index', compact ('judulHalaman'));
+
  }
+
  public function show($id)
+
  {
  return 'Menampilkan detail perusahaan dengan ID: ' . $id;
  }

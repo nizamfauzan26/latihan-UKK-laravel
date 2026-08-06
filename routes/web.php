@@ -22,7 +22,7 @@ Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
  })->name('show');
 });
 
-oute::get('/', function () {
+route::get('/', function () {
  return 'Selamat datang di Sistem E-PKL';
 });
   
