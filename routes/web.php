@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
+ Route::get('/', function () {
+ return 'Daftar semua perusahaan mitra PKL';
+ })->name('index');
+ Route::get('/{id}', function ($id) {
+ return 'Detail perusahaan ID: ' . $id;
+ })->name('show');
 });
+
+oute::get('/', function () {
+ return 'Selamat datang di Sistem E-PKL';
+});
+  
+
