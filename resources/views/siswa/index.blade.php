@@ -9,8 +9,8 @@
     
 </body>
 @section('content')
-<h1>Daftar Perusahaan Mitra PKL</h1>
-<p>Halaman ini menampilkan seluruh perusahaan tempat siswa PKL</p>
+<h1>Daftar Siswa PKL</h1>
+<p>Halaman ini menampilkan seluruh siswa PKL</p>
 @endsection
 
 
@@ -18,4 +18,4 @@
 @extends('layout.app')
 
 
-@section('title', 'Daftar Perusahaan Mitra')
+@section('title', 'Daftar Siswa PKL')
