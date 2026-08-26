@@ -1,15 +1,51 @@
 <?php
-
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-
+use App\Models\Perusahaan;
+use App\Models\Siswa;use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 class SiswaController extends Controller
+{public function index()
+    {$siswa= Siswa::with('perusahaan')
+            ->latest()
+            ->get();return view('siswa.index',compact('siswa'));
+    }public function create()
+    {$perusahaan= Perusahaan::orderBy('nama_perusahaan')->get();return view('siswa.create',compact('perusahaan'));
+    }
+    public function store(Request $request)
 {
- public function index()
-{
-    $judulHalaman = 'Data Siswa';
+    $validated = $request->validate([
+        'nis' => 'required|unique:siswa,nis',
+        'nama' => 'required|max:255',
+        'kelas' => 'required',
+        'jurusan' => 'required',
+        'perusahaan_id' => 'required|exists:perusahaan,id',
+        'tanggal_mulai_pkl' => 'required|date',    
+        'tanggal_selesai_pkl' => 'required|date',  
+    ]);
 
-    return view('siswa.index', compact('judulHalaman'));
+    Siswa::create($validated);
+
+    return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil ditambahkan.');
 }
+    public function show(Siswa$siswa)
+    {
+        $siswa->load('perusahaan');return view('siswa.show',compact('siswa'));
+    }public function edit(Siswa$siswa)
+    {$perusahaan= Perusahaan::orderBy('nama_perusahaan')->get();return view('siswa.edit',compact('siswa','perusahaan'));
+    
+    }public function update(Request$request,Siswa$siswa)
+    {$validated= $request->validate(['nis' => ['required',
+                Rule::unique('siswa','nis')->ignore($siswa->id),
+            ],'nama' =>'required|max:255','kelas' =>'required|max:50','jurusan' =>'required|max:100','perusahaan_id' =>'required|exists:perusahaan,id','tanggal_mulai' =>'nullable|date','tanggal_selesai' =>'nullable|date|after_or_equal:tanggal_mulai',
+        ]);
+
+        $siswa->update($validated);return redirect()
+            ->route('siswa.index')
+            ->with('success','Data siswa berhasil diperbarui.');
+    }public function destroy(Siswa$siswa)
+    {
+        $siswa->delete();return redirect()
+            ->route('siswa.index')
+            ->with('success','Data siswa berhasil dihapus.');
+    }
 }

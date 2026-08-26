@@ -1,34 +1,31 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\SiswaController;
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
 
-// Halaman utama
-Route::get('/', function () {
-    return 'Selamat datang di Sistem E-PKL';
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () { return redirect()->route('siswa.index'); });
+
+Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
+    Route::get('/', [PerusahaanController::class,'index'])->name('index');
+    Route::get('/create', [PerusahaanController::class,'create'])->name('create');
+    Route::post('/', [PerusahaanController::class,'store'])->name('store');
+    Route::get('/{perusahaan}', [PerusahaanController::class,'show'])->name('show');
+    Route::get('/{perusahaan}/edit', [PerusahaanController::class,'edit'])->name('edit');
+    Route::put('/{perusahaan}', [PerusahaanController::class,'update'])->name('update');
+    Route::delete('/{perusahaan}', [PerusahaanController::class,'destroy'])->name('destroy');
 });
 
-// Route siswa
-Route::get('/siswa', [SiswaController::class, 'index'])
-    ->name('siswa.index');
-
-Route::get('/siswa/{id}', [SiswaController::class, 'show'])
-    ->name('siswa.show');
-    
-    Route::get('/siswa', [SiswaController::class, 'index']);
-
-// Route perusahaan menggunakan Controller
-Route::get('/perusahaan', [PerusahaanController::class, 'index'])
-    ->name('perusahaan.index');
-
-Route::get('/perusahaan/{id}', [PerusahaanController::class, 'show'])
-    ->name('perusahaan.show');
+Route::prefix('siswa')->name('siswa.')->group(function () {
+    Route::get('/', [SiswaController::class,'index'])->name('index');
+    Route::get('/create', [SiswaController::class,'create'])->name('create');
+    Route::post('/', [SiswaController::class,'store'])->name('store');
+    Route::get('/{siswa}', [SiswaController::class,'show'])->name('show');
+    Route::get('/{siswa}/edit', [SiswaController::class,'edit'])->name('edit');
+    Route::put('/{siswa}', [SiswaController::class,'update'])->name('update');
+    Route::delete('/{siswa}', [SiswaController::class,'destroy'])->name('destroy');
+});
 
     
 

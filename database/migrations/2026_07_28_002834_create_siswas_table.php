@@ -6,29 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('siswas', function (Blueprint $table) {
- $table->id();
- $table->string('nis', 20)->unique();
- $table->string('nama', 100);
- $table->string('kelas', 30); // contoh: XI RPL 1
- $table->date('tanggal_mulai_pkl');
- $table->date('tanggal_selesai_pkl');
- $table->foreignId('perusahaan_id')
- ->constrained('perusahaans')
- ->onDelete('cascade');
- $table->timestamps();
-        });}
+        Schema::create('siswa', function (Blueprint $table) {
+            $table->id();
+            $table->string('nis');
+            $table->string('nama');
+            $table->string('kelas');
+            $table->string('jurusan');
+            $table->date('tanggal_mulai_pkl');
+            $table->date('tanggal_selesai_pkl');
+            $table->foreignId('perusahaan_id')->constrained('perusahaan')->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('siswas');
+        Schema::dropIfExists('siswa');
     }
 };
