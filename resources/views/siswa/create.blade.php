@@ -116,6 +116,51 @@
 
             </div>
 
+           */*/*/*
+
+            <div class="mb-3">
+
+    <label class="form-label">
+        Kompetensi
+    </label>
+
+    <div class="row">
+
+        @foreach ($kompetensi as $item)
+
+            <div class="col-md-4 mb-2">
+
+                <div class="form-check">
+
+                    <input
+                        type="checkbox"
+                        name="kompetensi[]"
+                        value="{{ $item->id }}"
+                        class="form-check-input"
+                        id="kompetensi{{ $item->id }}"
+                        {{ in_array($item->id, old('kompetensi', [])) ? 'checked' : '' }}>
+
+                    <label
+                        class="form-check-label"
+                        for="kompetensi{{ $item->id }}">
+
+                        {{ $item->nama_kompetensi }}
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        @endforeach
+
+    </div>
+
+</div>
+
+
+     */*/*/*
+
             <div class="row">
     <div class="col-md-6 mb-3">
         <label for="tanggal_mulai_pkl" class="form-label">Tanggal Mulai</label>

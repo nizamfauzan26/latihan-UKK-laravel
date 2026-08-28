@@ -18,6 +18,8 @@
 
 <body>
 
+
+
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container">
 
@@ -31,6 +33,11 @@
                 <a class="nav-link"
                     href="{{ route('siswa.index') }}">
                     Siswa
+                </a>
+
+                <a class="nav-link"
+                   href="{{ route('kompetensi.index') }}">
+                   Kompetensi
                 </a>
 
                 <a class="nav-link"
@@ -63,14 +70,17 @@
                 </ul>
 
             </div>
+
+            
         @endif
 
         @yield('content')
 
-        <nav>Sistem Informasi PKL — SMK</nav>
- <main>
- </main>
- <footer>&copy; {{ date('Y') }} SMK — Modul E-PKL</footer>
+        
+ 
+ <footer>&copy; {{ date('Y') }} SMK - Modul E-PKL</footer>
+
+ 
 
     </main>
 

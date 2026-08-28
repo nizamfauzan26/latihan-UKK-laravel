@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\KompetensiController;
 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return redirect()->route('siswa.index'); });
+
 
 Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
     Route::get('/', [PerusahaanController::class,'index'])->name('index');
@@ -25,6 +27,16 @@ Route::prefix('siswa')->name('siswa.')->group(function () {
     Route::get('/{siswa}/edit', [SiswaController::class,'edit'])->name('edit');
     Route::put('/{siswa}', [SiswaController::class,'update'])->name('update');
     Route::delete('/{siswa}', [SiswaController::class,'destroy'])->name('destroy');
+});
+
+Route::prefix('kompetensi')->name('kompetensi.')->group(function () {
+    Route::get('/', [KompetensiController::class, 'index'])->name('index');
+    Route::get('/create', [KompetensiController::class, 'create'])->name('create');
+    Route::post('/', [KompetensiController::class, 'store'])->name('store');
+    Route::get('/{kompetensi}', [KompetensiController::class, 'show'])->name('show');
+    Route::get('/{kompetensi}/edit', [KompetensiController::class, 'edit'])->name('edit');
+    Route::put('/{kompetensi}', [KompetensiController::class, 'update'])->name('update');
+    Route::delete('/{kompetensi}', [KompetensiController::class, 'destroy'])->name('destroy');
 });
 
     

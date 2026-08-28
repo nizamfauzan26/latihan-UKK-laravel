@@ -39,6 +39,7 @@
                         <th>Kelas</th>
                         <th>Jurusan</th>
                         <th>Perusahaan</th>
+                        <th>Kompetensi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -70,8 +71,16 @@
                             </td>
 
                             <td>
+                                {{ $kompetensi->nama_kompetensi }}
+                            </td> 
+
+                            <td>
                                 {{ $item->perusahaan->nama_perusahaan }}
                             </td>
+
+                            
+                            
+                            
 
                             <td>
 
@@ -101,6 +110,11 @@
                                     </button>
 
                                 </form>
+
+                                <span class="text-muted">
+            Belum ada
+        </span>
+
 
                             </td>
 

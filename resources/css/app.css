@@ -1,0 +1,19 @@
+/* Membuat container utama memenuhi tinggi layar */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Mengisi sisa ruang kosong agar footer terdorong ke paling bawah */
+main {
+  flex: 1;
+}
+
+/* Mengatur teks footer agar di tengah */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #0080ff; /* Opsional: warna latar footer */
+}

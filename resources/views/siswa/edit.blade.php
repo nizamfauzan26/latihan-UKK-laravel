@@ -14,7 +14,7 @@
 
 <h2 class="mb-4">Edit Data Siswa</h2>
 
-< class="card">
+<
 
     <div class="card-body">
 
@@ -143,6 +143,50 @@
                 </div>
 
             </div>
+
+
+
+            <div class="mb-3">
+
+    <label class="form-label">
+        Kompetensi
+    </label>
+
+    <div class="row">
+
+        @foreach ($kompetensi as $item)
+
+            <div class="col-md-4 mb-2">
+
+                <div class="form-check">
+
+                    <input
+                        type="checkbox"
+                        name="kompetensi[]"
+                        value="{{ $item->id }}"
+                        class="form-check-input"
+                        id="edit-kompetensi{{ $item->id }}"
+                        {{ $siswa->kompetensi->contains($item->id) ? 'checked' : '' }}>
+
+                    <label
+                        class="form-check-label"
+                        for="edit-kompetensi{{ $item->id }}">
+
+                        {{ $item->nama_kompetensi }}
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        @endforeach
+
+    </div>
+
+</div>
+
+
 
             <a
                 href="{{ route('siswa.index') }}"
