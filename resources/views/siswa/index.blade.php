@@ -74,12 +74,32 @@
                                 {{ $kompetensi->nama_kompetensi }}
                             </td> 
 
-                            <td>
-                                {{ $item->perusahaan->nama_perusahaan }}
-                            </td>
+                          <td>
 
-                            
-                            
+    {{ $item->perusahaan->nama_perusahaan }}
+
+</td>
+
+<td>
+
+    @forelse ($item->kompetensi as $kompetensi)
+
+        <span class="badge bg-primary mb-1">
+
+            {{ $kompetensi->nama_kompetensi }}
+
+        </span>
+
+    @empty
+
+        <span class="text-muted">
+            Belum ada
+        </span>
+
+    @endforelse
+
+</td>
+
                             
 
                             <td>

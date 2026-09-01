@@ -6,41 +6,68 @@ use App\Models\Kompetensi;
 use Illuminate\Http\Request;
 
 class KompetensiController extends Controller
-
-    public function index()
 {
-  {  $kompetensi = Kompetensi::withCount('siswa')
+   public function index()
+{
+    $kompetensi = Kompetensi::withCount('siswa')
         ->latest()
         ->get();
 
     return view('kompetensi.index', compact('kompetensi'));
-} 
-
 }
 
-
- public function create()
-{
-    $perusahaan = Perusahaan::orderBy('nama_perusahaan')->get();
-
-    $kompetensi = Kompetensi::orderBy('nama_kompetensi')->get();
-
-    return view('siswa.create', compact(
-        'perusahaan',
-        'kompetensi'
-    ));
-
+    public function create()
+    {
+        return view('kompetensi.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_kompetensi' => 'required',
+        $validated = $request->validate([
+            'nama_kompetensi' => 'required|max:255',
+            'deskripsi' => 'nullable',
         ]);
 
-        Kompetensi::create($request->all());
-        return redirect()->route('kompetensi.index')->with('success', 'Kompetensi berhasil ditambahkan');
+        Kompetensi::create($validated);
+
+        return redirect()
+            ->route('kompetensi.index')
+            ->with('success', 'Kompetensi berhasil ditambahkan.');
+    }
+
+    public function show(Kompetensi $kompetensi)
+    {
+        $kompetensi->load('siswa');
+
+        return view('kompetensi.show', compact('kompetensi'));
+    }
+
+    public function edit(Kompetensi $kompetensi)
+    {
+        return view('kompetensi.edit', compact('kompetensi'));
+    }
+
+    public function update(Request $request, Kompetensi $kompetensi)
+    {
+        $validated = $request->validate([
+            'nama_kompetensi' => 'required|max:255',
+            'deskripsi' => 'nullable',
+        ]);
+
+        $kompetensi->update($validated);
+
+        return redirect()
+            ->route('kompetensi.index')
+            ->with('success', 'Kompetensi berhasil diperbarui.');
+    }
+
+    public function destroy(Kompetensi $kompetensi)
+    {
+        $kompetensi->delete();
+
+        return redirect()
+            ->route('kompetensi.index')
+            ->with('success', 'Kompetensi berhasil dihapus.');
     }
 }
-
 

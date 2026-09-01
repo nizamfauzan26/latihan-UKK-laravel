@@ -68,6 +68,36 @@
                 </td>
             </tr>
 
+
+            <tr>
+
+    <th>
+        Kompetensi
+    </th>
+
+    <td>
+
+        @forelse ($siswa->kompetensi as $kompetensi)
+
+            <span class="badge bg-primary me-1">
+
+                {{ $kompetensi->nama_kompetensi }}
+
+            </span>
+
+        @empty
+
+            <span class="text-muted">
+                Belum ada kompetensi.
+            </span>
+
+        @endforelse
+
+    </td>
+
+</tr>
+
+
         </table>
 
         <a

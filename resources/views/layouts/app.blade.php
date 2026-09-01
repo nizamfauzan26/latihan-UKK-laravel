@@ -28,7 +28,24 @@
                 Data PKL
             </a>
 
-            <div class="navbar-nav">
+
+            
+           <a class="nav-link"
+    href="{{ route('siswa.index') }}">
+    Siswa
+</a>
+
+<a class="nav-link"
+    href="{{ route('perusahaan.index') }}">
+    Perusahaan
+</a>
+
+<a class="nav-link"
+    href="{{ route('kompetensi.index') }}">
+    Kompetensi
+</a>
+
+
 
                 <a class="nav-link"
                     href="{{ route('siswa.index') }}">
