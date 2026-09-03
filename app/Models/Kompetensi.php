@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Kompetensi extends Model
@@ -18,13 +17,13 @@ class Kompetensi extends Model
         'deskripsi',
     ];
 
-    public function kompetensi(): BelongsToMany
-{
-    return $this->belongsToMany(
-        Kompetensi::class,
-        'kompetensi_siswa',
-        'siswa_id',
-        'kompetensi_id'
-    );
-}
+    public function siswa(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Siswa::class,
+            'kompetensi_siswa',
+            'kompetensi_id',
+            'siswa_id'
+        );
+    }
 }

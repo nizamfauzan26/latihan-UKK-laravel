@@ -20,52 +20,27 @@
 
 
 
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-        <div class="container">
-
-            <a class="navbar-brand"
-                href="{{ route('siswa.index') }}">
-                Data PKL
-            </a>
-
-
-            
-           <a class="nav-link"
-    href="{{ route('siswa.index') }}">
-    Siswa
-</a>
-
-<a class="nav-link"
-    href="{{ route('perusahaan.index') }}">
-    Perusahaan
-</a>
-
-<a class="nav-link"
-    href="{{ route('kompetensi.index') }}">
-    Kompetensi
-</a>
-
-
-
-                <a class="nav-link"
-                    href="{{ route('siswa.index') }}">
-                    Siswa
-                </a>
-
-                <a class="nav-link"
-                   href="{{ route('kompetensi.index') }}">
-                   Kompetensi
-                </a>
-
-                <a class="nav-link"
-                    href="{{ route('perusahaan.index') }}">
-                    Perusahaan
-                </a>
-
-            </div>
-
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Data PKL</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('siswa*') ? 'active' : '' }}" href="/siswa">Siswa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('perusahaan*') ? 'active' : '' }}" href="/perusahaan">Perusahaan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('kompetensi*') ? 'active' : '' }}" href="/kompetensi">Kompetensi</a>
+                </li>
+            </ul>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <main class="container py-4">
 
@@ -102,5 +77,5 @@
     </main>
 
 </body>
-
+ 
 </html>

@@ -3,15 +3,13 @@
 @section('title', 'Tambah Kompetensi')
 
 @section('content')
-```
+
 <h2>Tambah Kompetensi</h2>
 
 <p class="text-muted">
     Tambahkan kompetensi baru yang dapat dimiliki siswa.
 </p>
-```
 
-```
 <div class="card-body">
 
     <form
@@ -95,6 +93,5 @@
     </form>
 
 </div>
-```
 
 @endsection

@@ -29,142 +29,54 @@
 
         <div class="table-responsive">
 
-            <table class="table table-bordered table-striped">
-
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>NIS</th>
-                        <th>Nama</th>
-                        <th>Kelas</th>
-                        <th>Jurusan</th>
-                        <th>Perusahaan</th>
-                        <th>Kompetensi</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    @forelse ($siswa as $item)
-
-                        <tr>
-
-                            <td>
-                                {{ $loop->iteration }}
-                            </td>
-
-                            <td>
-                                {{ $item->nis }}
-                            </td>
-
-                            <td>
-                                {{ $item->nama }}
-                            </td>
-
-                            <td>
-                                {{ $item->kelas }}
-                            </td>
-
-                            <td>
-                                {{ $item->jurusan }}
-                            </td>
-
-                            <td>
-                                {{ $kompetensi->nama_kompetensi }}
-                            </td> 
-
-                          <td>
-
-    {{ $item->perusahaan->nama_perusahaan }}
-
-</td>
-
-<td>
-
-    @forelse ($item->kompetensi as $kompetensi)
-
-        <span class="badge bg-primary mb-1">
-
-            {{ $kompetensi->nama_kompetensi }}
-
-        </span>
-
-    @empty
-
-        <span class="text-muted">
-            Belum ada
-        </span>
-
-    @endforelse
-
-</td>
-
-                            
-
-                            <td>
-
-                                <a href="{{ route('siswa.show', $item) }}"
-                                    class="btn btn-info btn-sm">
-                                    Detail
-                                </a>
-
-                                <a href="{{ route('siswa.edit', $item) }}"
-                                    class="btn btn-warning btn-sm">
-                                    Edit
-                                </a>
-
-                                <form
-                                    action="{{ route('siswa.destroy', $item) }}"
-                                    method="POST"
-                                    class="d-inline">
-
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button
-                                        type="submit"
-                                        class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Yakin ingin menghapus data ini?')">
-                                        Hapus
-                                    </button>
-
-                                </form>
-
-                                <span class="text-muted">
-            Belum ada
-        </span>
-
-
-                            </td>
-
-                        </tr>
-
-                    @empty
-
-                        <tr>
-
-                            <td colspan="7"
-                                class="text-center">
-
-                                Belum ada data siswa.
-
-                            </td>
-
-                        </tr>
-
-                    @endforelse
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
-
-</div>
-
+            <table class="table table-bordered table-striped align-middle">
+    <thead>
+        <tr>
+            <th text-center>No</th>
+            <th>NIS</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Jurusan</th>
+            <th>Perusahaan</th>
+            <th>Kompetensi</th>
+            <th class="text-center">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($siswa as $index => $item)
+        <tr>
+            <td class="text-center">{{ $index + 1 }}</td>
+            <td>{{ $item->nis }}</td>
+            <td>{{ $item->nama }}</td>
+            <td>{{ $item->kelas }}</td>
+            <td>{{ $item->jurusan }}</td>
+            
+            <!-- Kolom Perusahaan -->
+            <td>{{ $item->perusahaan->nama_perusahaan ?? '-' }}</td>
+            
+            <!-- Kolom Kompetensi -->
+            <td>
+                @forelse($item->kompetensi as $k)
+                    <span class="badge bg-primary">{{ $k->nama_kompetensi }}</span>
+                @empty
+                    <span class="text-muted small">Belum ada</span>
+                @endforelse
+            </td>
+            
+            <!-- Kolom Aksi -->
+            <td class="text-center">
+                <a href="{{ route('siswa.show', $item->id) }}" class="btn btn-info btn-sm">Detail</a>
+                <a href="{{ route('siswa.edit', $item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{{ route('siswa.destroy', $item->id) }}" method="POST" class="d-inline">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger btn-sm" onclick="return confirm('Hapus data?')">Hapus</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 @endsection
     
 </body>

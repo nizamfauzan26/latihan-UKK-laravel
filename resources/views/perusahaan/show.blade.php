@@ -12,145 +12,83 @@
 
 @section('content')
 
-<h2 class="mb-4">Detail Perusahaan</h2>
+<table class="table table-bordered">
 
-<div class="card mb-4">
+    <thead class="table-dark">
 
-    <div class="card-body">
+        <tr>
+            <th>No</th>
+            <th>NIS</th>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Kompetensi</th>
+        </tr>
 
-        <table class="table">
+    </thead>
 
-            <tr>
-                <th width="200">
-                    Nama Perusahaan
-                </th>
+    <tbody>
 
-                <td>
-                    {{ $perusahaan->nama_perusahaan }}
-                </td>
-            </tr>
-
-            <tr>
-                <th>Alamat</th>
-
-                <td>
-                    {{ $perusahaan->alamat }}
-                </td>
-            </tr>
+        @forelse ($perusahaan->siswa as $item)
 
             <tr>
-                <th>Telepon</th>
 
                 <td>
-                    {{ $perusahaan->telepon ?? '-' }}
+                    {{ $loop->iteration }}
                 </td>
+
+                <td>
+                    {{ $item->nis }}
+                </td>
+
+                <td>
+                    {{ $item->nama }}
+                </td>
+
+                <td>
+                    {{ $item->kelas }}
+                </td>
+
+                <td>
+
+                    @forelse ($item->kompetensi as $kompetensi)
+
+                        <span class="badge bg-primary">
+
+                            {{ $kompetensi->nama_kompetensi }}
+
+                        </span>
+
+                    @empty
+
+                        <span class="text-muted">
+                            Belum ada
+                        </span>
+
+                    @endforelse
+
+                </td>
+
             </tr>
+
+        @empty
 
             <tr>
-                <th>Email</th>
 
-                <td>
-                    {{ $perusahaan->email ?? '-' }}
+                <td
+                    colspan="5"
+                    class="text-center">
+
+                    Belum ada siswa PKL.
+
                 </td>
+
             </tr>
 
-            <tr>
-                <th>Pembimbing</th>
+        @endforelse
 
-                <td>
-                    {{ $perusahaan->pembimbing ?? '-' }}
-                </td>
-            </tr>
+    </tbody>
 
-        </table>
-
-    </div>
-
-</div>
-
-<h4>Daftar Siswa PKL</h4>
-
-<div class="card">
-
-    <div class="card-body">
-
-        <table class="table table-bordered">
-
-            <thead>
-
-                <tr>
-                    <th>No</th>
-                    <th>NIS</th>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                @forelse ($perusahaan->siswa as $item)
-
-                    <tr>
-
-                        <td>
-                            {{ $loop->iteration }}
-                        </td>
-
-                        <td>
-                            {{ $item->nis }}
-                        </td>
-
-                        <td>
-                            {{ $item->nama }}
-                        </td>
-
-                        <td>
-                            {{ $item->kelas }}
-                        </td>
-
-                    </tr>
-
-                @empty
-
-                    <tr>
-
-                        <td
-                            colspan="4"
-                            class="text-center">
-
-                            Belum ada siswa PKL.
-
-                        </td>
-
-                    </tr>
-
-                @endforelse
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-</div>
-
-<a
-    href="{{ route('perusahaan.index') }}"
-    class="btn btn-secondary mt-3">
-
-    Kembali
-
-</a>
-
-<a
-    href="{{ route('perusahaan.edit', $perusahaan) }}"
-    class="btn btn-warning mt-3">
-
-    Edit
-
-</a>
-
+</table>
 @endsection
     
 </body>

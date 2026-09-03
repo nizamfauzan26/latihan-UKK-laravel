@@ -116,11 +116,6 @@
 
             </div>
 
-
-
-
-           */*/*/*
-
             <div class="mb-3">
 
     <label class="form-label">
@@ -161,83 +156,6 @@
 
 </div>
 
-
-<div class="mb-3">
-
-    <label class="form-label">
-        Kompetensi
-    </label>
-
-    <div class="row">
-
-        @foreach ($kompetensi as $item)
-
-            <div class="col-md-4 mb-2">
-
-                <div class="form-check">
-
-                    <input
-                        type="checkbox"
-                        name="kompetensi[]"
-                        value="{{ $item->id }}"
-                        class="form-check-input"
-                        id="kompetensi{{ $item->id }}"
-                        {{ in_array($item->id, old('kompetensi', [])) ? 'checked' : '' }}>
-
-                    <label
-                        class="form-check-label"
-                        for="kompetensi{{ $item->id }}">
-
-                        {{ $item->nama_kompetensi }}
-
-                    </label>
-
-                </div>
-
-            </div>
-
-        @endforeach
-
-    </div>
-
-</div>
-
-
-
-<label class="form-label">
-    Kompetensi yang Dikuasai
-</label>
-
-<div class="row">
-
-    @foreach ($kompetensi as $item)
-
-        <div class="col-md-4 mb-2">
-
-            <div class="form-check">
-
-                <input
-                    type="checkbox"
-                    name="kompetensi[]"
-                    value="{{ $item->id }}"
-                    class="form-check-input"
-                    id="kompetensi{{ $item->id }}"
-                    {{ in_array($item->id, old('kompetensi', [])) ? 'checked' : '' }}>
-
-                <label
-                    class="form-check-label"
-                    for="kompetensi{{ $item->id }}">
-
-                    {{ $item->nama_kompetensi }}
-
-                </label>
-
-            </div>
-
-        </div>
-
-    @endforeach
-
 </div>
 
 @error('kompetensi')
@@ -251,26 +169,16 @@
 
 
 
-     */*/*/*
 
-            <div class="row">
-    <div class="col-md-6 mb-3">
-        <label for="tanggal_mulai_pkl" class="form-label">Tanggal Mulai</label>
-        <input type="date" 
-               class="form-control" 
-               id="tanggal_mulai_pkl" 
-               name="tanggal_mulai_pkl" 
-               value="{{ old('tanggal_mulai_pkl') }}">
-    </div>
 
-    <div class="col-md-6 mb-3">
-        <label for="tanggal_selesai_pkl" class="form-label">Tanggal Selesai</label>
-        <input type="date" 
-               class="form-control" 
-               id="tanggal_selesai_pkl" 
-               name="tanggal_selesai_pkl" 
-               value="{{ old('tanggal_selesai_pkl') }}">
-    </div>
+            <div class="mb-3">
+    <label for="tanggal_mulai" class="form-label">Tanggal Mulai PKL</label>
+    <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" value="{{ old('tanggal_mulai') }}">
+</div>
+
+<div class="mb-3">
+    <label for="tanggal_selesai" class="form-label">Tanggal Selesai PKL</label>
+    <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" value="{{ old('tanggal_selesai') }}">
 </div>
 
                 </div>

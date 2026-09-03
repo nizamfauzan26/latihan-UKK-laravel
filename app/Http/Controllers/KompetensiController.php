@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 
 class KompetensiController extends Controller
 {
-   public function index()
-{
-    $kompetensi = Kompetensi::withCount('siswa')
-        ->latest()
-        ->get();
+    public function index()
+    {
+        $kompetensi = Kompetensi::withCount('siswa')
+            ->latest()
+            ->get();
 
-    return view('kompetensi.index', compact('kompetensi'));
-}
+        return view('kompetensi.index', compact('kompetensi'));
+    }
 
     public function create()
     {
@@ -70,4 +70,3 @@ class KompetensiController extends Controller
             ->with('success', 'Kompetensi berhasil dihapus.');
     }
 }
-
